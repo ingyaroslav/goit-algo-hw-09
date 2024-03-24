@@ -1,5 +1,6 @@
-def find_coins_greedy(amount):
-    coins = [50, 25, 10, 5, 2, 1]
+def find_coins_greedy(amount, coins=None):
+    if coins is None:
+        coins = [50, 25, 10, 5, 2, 1]
     result = {}
     for coin in coins:
         if amount >= coin:
@@ -7,8 +8,9 @@ def find_coins_greedy(amount):
             amount -= coin * (amount // coin)
     return result
 
-def find_min_coins(amount):
-    coins = [1, 2, 5, 10, 25, 50]
+def find_min_coins(amount, coins=None):
+    if coins is None:
+        coins = [1, 2, 5, 10, 25, 50]
     dp = [float('inf')] * (amount + 1)
     dp[0] = 0
     used_coins = {}
@@ -27,7 +29,13 @@ def find_min_coins(amount):
         amount -= coin
     return result
 
-# Приклад використання функцій:
-amount = 113
-print("Жадібний алгоритм:", find_coins_greedy(amount))
-print("Динамічне програмування:", find_min_coins(amount))
+# Функція для виведення результатів обох алгоритмів
+def print_results(amount):
+    print("Сума:", amount)
+    print("Жадібний алгоритм:", find_coins_greedy(amount))
+    print("Динамічне програмування:", find_min_coins(amount))
+    print()
+
+# Приклад використання з введенням користувачем суми:
+user_amount = int(input("Введіть суму: "))
+print_results(user_amount)
