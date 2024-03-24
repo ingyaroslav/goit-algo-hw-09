@@ -1,4 +1,7 @@
+import time
+
 def find_coins_greedy(amount, coins=None):
+    start_time = time.time()
     if coins is None:
         coins = [50, 25, 10, 5, 2, 1]
     result = {}
@@ -6,9 +9,13 @@ def find_coins_greedy(amount, coins=None):
         if amount >= coin:
             result[coin] = amount // coin
             amount -= coin * (amount // coin)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print("Час виконання жадібного алгоритму:", execution_time, "сек")
     return result
 
 def find_min_coins(amount, coins=None):
+    start_time = time.time()
     if coins is None:
         coins = [1, 2, 5, 10, 25, 50]
     dp = [float('inf')] * (amount + 1)
@@ -27,6 +34,9 @@ def find_min_coins(amount, coins=None):
         else:
             result[coin] = 1
         amount -= coin
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print("Час виконання алгоритму динамічного програмування:", execution_time, "сек")
     return result
 
 # Функція для виведення результатів обох алгоритмів
